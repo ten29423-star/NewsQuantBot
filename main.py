@@ -57,9 +57,11 @@ def source_name(feed, feed_url):
     return domain
 
 
-def contains_word(text, phrase):
-    """True if `phrase` appears in `text` as whole word(s), not as a substring of a longer word."""
-    pattern = r"\b" + re.escape(phrase.lower()) + r"\b"
+def contains_word(text, phrase, plurals=False):
+    """True if `phrase` appears in `text` as whole word(s), not as a substring of a longer word.
+    With plurals=True, also accepts a simple plural ending (dog -> dogs, fox -> foxes)."""
+    suffix = r"(?:s|es)?" if plurals else ""
+    pattern = r"\b" + re.escape(phrase.lower()) + suffix + r"\b"
     return re.search(pattern, text) is not None
 
 
@@ -68,8 +70,9 @@ def matches_category(text, cat_data):
     for excl in cat_data.get("exclude_keywords", []):
         if contains_word(text, excl):
             return False
+    plurals = cat_data.get("match_plurals", False)
     for kw in cat_data["keywords"]:
-        if contains_word(text, kw):
+        if contains_word(text, kw, plurals):
             return True
     return False
 
