@@ -14,7 +14,9 @@
     "https://earther.com/rss",
     "https://news.mongabay.com/feed/",
     "https://nypost.com/lifestyle/feed/",
-    "https://nypost.com/wildlife/feed/"
+    "https://nypost.com/wildlife/feed/",
+    "https://www.mirror.co.uk/?service=rss",
+    "https://www.dailystar.co.uk/?service=rss"
   ],
   "categories": {
     "Animal": {
@@ -133,5 +135,17 @@
   "source_health": {
     "alert_after_days": 1
   },
-  "check_interval_note": "Actual interval is controlled by the cron schedule in .github/workflows/run.yml, not this file"
+  "check_interval_note": "Actual interval is controlled by the cron schedule in .github/workflows/run.yml, not this file",
+  "block_keywords": [
+    "coupon",
+    "promo code",
+    "promo codes",
+    "discount code",
+    "voucher code",
+    "promo"
+  ],
+  "block_url_contains": [
+    "promo-code",
+    "coupon"
+  ]
 }

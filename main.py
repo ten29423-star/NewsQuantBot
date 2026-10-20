@@ -77,13 +77,27 @@ def matches_category(text, cat_data):
     return False
 
 
-def categorize(title, summary, config):
+def is_blocked(text, link, config):
+    """True if the article matches the global blacklist (e.g. coupon spam)."""
+    for kw in config.get("block_keywords", []):
+        if contains_word(text, kw, plurals=True):
+            return True
+    link = (link or "").lower()
+    for frag in config.get("block_url_contains", []):
+        if frag.lower() in link:
+            return True
+    return False
+
+
+def categorize(title, summary, config, link=""):
     """
     Returns a list of matched category names, or None if the article
     should be skipped entirely (sport-excluded with no Animal override).
     Empty list means no specific category matched -> caller uses "Other".
     """
     text = (title + " " + summary).lower()
+    if is_blocked(text, link, config):
+        return None  # skip: blacklisted (coupons, promo codes, etc.)
     categories = config["categories"]
 
     matched = [name for name, data in categories.items() if matches_category(text, data)]
@@ -187,7 +201,7 @@ def main():
             link = entry.get("link", "")
             summary = entry.get("summary", "")
 
-            matched = categorize(title, summary, config)
+            matched = categorize(title, summary, config, link)
             if matched is None:
                 seen_set.add(eid)  # don't re-check sport-excluded articles every run
                 new_seen.append(eid)
