@@ -14,9 +14,7 @@
     "https://earther.com/rss",
     "https://news.mongabay.com/feed/",
     "https://nypost.com/lifestyle/feed/",
-    "https://nypost.com/wildlife/feed/",
-    "https://www.mirror.co.uk/?service=rss",
-    "https://www.dailystar.co.uk/?service=rss"
+    "https://nypost.com/wildlife/feed/"
   ],
   "categories": {
     "Animal": {
