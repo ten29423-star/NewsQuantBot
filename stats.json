@@ -294,9 +294,10 @@
     "Crypto": 11
   },
   "2026-11-12": {
-    "total": 29,
+    "total": 31,
     "AI": 1,
-    "Other": 25,
-    "Animal": 3
+    "Other": 26,
+    "Animal": 3,
+    "Crypto": 1
   }
 }
