@@ -315,8 +315,9 @@
     "Animal": 3
   },
   "2026-11-15": {
-    "total": 19,
-    "Other": 18,
-    "Crypto": 1
+    "total": 23,
+    "Other": 20,
+    "Crypto": 1,
+    "Animal": 2
   }
 }
